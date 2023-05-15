@@ -16,7 +16,7 @@ for i in lines:
 object_list.append(temp_list) #last object
 f.close
 
-#Make result_map to find efficient route(640x480, 10x10 matrix)
+#Make result_map to find efficient route(640x480, 12x16 matrix)
 rows = 12
 cols = 16
 result_map = [[('e',0) for j in range(cols)] for i in range(rows)]
