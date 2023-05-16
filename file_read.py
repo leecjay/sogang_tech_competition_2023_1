@@ -2,7 +2,7 @@
 #read data from file
 
 def map():
-        f = open("output.txt", 'r')
+        f = open("/home/sgme/output.txt", 'r')
         f.readline()
         object_list = []
         lines = f.read().splitlines()
