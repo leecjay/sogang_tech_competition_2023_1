@@ -69,9 +69,9 @@ def find_pet_can_list(given_map):
     for i in range(len(given_map)):
         for j in range(len(given_map[0])):
             if given_map[i][j][0] == 'p':
-                pet_list.append((i, j))
+                pet_list.append((i, j, given_map[i][j]))
             elif given_map[i][j][0] == 'c':
-                can_list.append((i, j))
+                can_list.append((i, j, given_map[i][j]))
     return pet_list, can_list
 
 #Function : Make map which has shortest path from PET and Can to trash area
@@ -94,7 +94,6 @@ def find_shortest_classfy_path(maze, final_map, pet_list, can_list, start):
             if dist[k][len(maze[0])-1] < min_can:
                 min_can = dist[k][len(maze[0])-1]
         final_map[[i],[j]] = min_can
-    print(final_map)
     #Approach
     for i, j in pet_list+can_list:
         #Refactoring needed for efficiency
@@ -102,7 +101,6 @@ def find_shortest_classfy_path(maze, final_map, pet_list, can_list, start):
         temp_maze[i][j] = 0
         dist = dijkstra(temp_maze, start)
         final_map[[i],[j]] += dist[[i],[j]] 
-    print(final_map)  
     return final_map
 
 #Function : Find most efficient index from final map
@@ -156,62 +154,58 @@ def classify_trash(given_map, start):
     return start, final_path
     
 
-#Main              
-given_map = [[('x', 0), ('e', 0), ('e', 0), ('e', 0), ('e', 0), ('e', 0), ('y', 0)],
-             [('x', 0), ('e', 0), ('p', 1), ('c', 2), ('e', 0), ('p', 3), ('y', 0)],
-             [('x', 0), ('e', 0), ('e', 0), ('e', 0), ('e', 0), ('e', 0), ('y', 0)],
-             [('x', 0), ('p', 4), ('e', 0), ('c', 5), ('c', 6), ('e', 0), ('y', 0)],
-             [('x', 0), ('e', 0), ('e', 0), ('e', 0), ('e', 0), ('e', 0), ('y', 0)]]
+#Main
+def main(given_map, start_row, start_col):
 
-start = (3,6)
-print("START AT :", start)
-start, path = classify_trash(given_map, start)
+        start = (start_row, start_col)
+        print("START AT :", start)
+        start, path = classify_trash(given_map, start)
 
-print("RESULT : ")
-print(start)
-print(path)
+        print("RESULT : ")
+        print(start)
+        print(path)
 
-move_order = []
+        move_order = []
 
-row_1, col_1 = path.pop()
-while(path):
-    row_2, col_2 = path.pop()
-    dy = row_2 - row_1
-    dx = col_2 - col_1
-    #N
-    if dy < 0 and dx == 0:
-        new = [0, 5, 0, 0]
-    #NE
-    elif dy < 0 and dx > 0:
-        new = [0, 5, 1, 5]
-    #E
-    elif dy == 0 and dx > 0:
-        new = [0, 0, 1, 5]
-    #SE
-    elif dy > 0 and dx > 0:
-        new = [1, 5, 1, 5]
-    #S
-    elif dy > 0 and dx == 0:
-        new = [1, 5, 0, 0]
-    #SW
-    elif dy > 0 and dx < 0:
-        new = [1, 5, 0, 5]
-    #W
-    elif dy == 0 and dx < 0:
-        new = [0, 0, 0, 5]
-    #NW
-    else :
-        new = [0, 5, 0, 5]
-    
-    if (move_order):
-        old = move_order[-1]    
-        if (old[0]==new[0] and old[2] == new[2]):
-            move_order[-1][1] += new[1]
-            move_order[-1][3] += new[3]
-        else:
-            move_order.append(new)
-    else :
-        move_order.append(new)
-    row_1, col_1 = row_2, col_2
+        row_1, col_1 = path.pop()
+        while(path):
+            row_2, col_2 = path.pop()
+            dy = row_2 - row_1
+            dx = col_2 - col_1
+            #N
+            if dy < 0 and dx == 0:
+                new = [0, 15, 0, 0]
+            #NE
+            elif dy < 0 and dx > 0:
+                new = [0, 15, 1, 15]
+            #E
+            elif dy == 0 and dx > 0:
+                new = [0, 0, 1, 15]
+            #SE
+            elif dy > 0 and dx > 0:
+                new = [1, 15, 1, 15]
+            #S
+            elif dy > 0 and dx == 0:
+                new = [1, 15, 0, 0]
+            #SW
+            elif dy > 0 and dx < 0:
+                new = [1, 15, 0, 15]
+            #W
+            elif dy == 0 and dx < 0:
+                new = [0, 0, 0, 15]
+            #NW
+            else :
+                new = [0, 5, 0, 15]
 
-print(move_order)
+            if (move_order):
+                old = move_order[-1]    
+                if (old[0]==new[0] and old[2] == new[2]):
+                    move_order[-1][1] += new[1]
+                    move_order[-1][3] += new[3]
+                else:
+                    move_order.append(new)
+            else :
+                move_order.append(new)
+            row_1, col_1 = row_2, col_2
+
+        return move_order
