@@ -195,7 +195,7 @@ def main(given_map, start_row, start_col):
                 new = [0, 0, 0, 15]
             #NW
             else :
-                new = [0, 5, 0, 15]
+                new = [0, 15, 0, 15]
 
             if (move_order):
                 old = move_order[-1]    
