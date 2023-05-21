@@ -69,9 +69,9 @@ def find_pet_can_list(given_map):
     for i in range(len(given_map)):
         for j in range(len(given_map[0])):
             if given_map[i][j][0] == 'p':
-                pet_list.append((i, j, given_map[i][j]))
+                pet_list.append((i, j))
             elif given_map[i][j][0] == 'c':
-                can_list.append((i, j, given_map[i][j]))
+                can_list.append((i, j))
     return pet_list, can_list
 
 #Function : Make map which has shortest path from PET and Can to trash area
@@ -81,18 +81,18 @@ def find_shortest_classfy_path(maze, final_map, pet_list, can_list, start):
         dist = dijkstra(maze, (i, j))
         min_pet = INF
         #Find minimum distance from PET to trash area
-        for k in range(len(maze)):
-            if dist[k][0] < min_pet:
-                min_pet = dist[k][0]
+        for k in range(len(maze[0])):
+            if dist[0][k] < min_pet:
+                min_pet = dist[0][k]
         final_map[[i],[j]] = min_pet 
     #CAN
     for i, j in can_list:
         dist = dijkstra(maze, (i, j))
         min_can = INF
         #Find minimum distance from can to trash area
-        for k in range(len(maze)):
-            if dist[k][len(maze[0])-1] < min_can:
-                min_can = dist[k][len(maze[0])-1]
+        for k in range(len(maze[0])):
+            if dist[len(maze)-1][k] < min_can:
+                min_can = dist[len(maze)-1][k]
         final_map[[i],[j]] = min_can
     #Approach
     for i, j in pet_list+can_list:
@@ -100,10 +100,10 @@ def find_shortest_classfy_path(maze, final_map, pet_list, can_list, start):
         temp_maze = maze
         temp_maze[i][j] = 0
         dist = dijkstra(temp_maze, start)
-        final_map[[i],[j]] += dist[[i],[j]] 
+        final_map[[i],[j]] += dist[[i],[j]]   
     return final_map
 
-#Function : Find most efficient index from final map
+#Function : Find most efficient index from fin al map
 def find_most_efficient_index(map):
     min = INF
     min_index = (0, 0)
@@ -122,31 +122,32 @@ def classify_trash(given_map, start):
     pet_list, can_list = find_pet_can_list(given_map)
         
     for i, j in pet_list+can_list:
-        maze[[i],[j]] = -1
+        maze[i][j] = -1
     final_map = find_shortest_classfy_path(maze, final_map, pet_list, can_list, start)
-    print('\n')
-    print(final_map)
+    print("FINAL MAP: \n", final_map)
 
     target = find_most_efficient_index(final_map)
+    for i, j in pet_list+can_list:
+        maze[i][j] = -1
     dist = dijkstra(maze, target)
     final_path = []
 
     if given_map[target[0]][target[1]][0] == 'p':
         min_pet = INF
-        min_pet_row = 0
-        for i in range(len(maze)):
-            if dist[i][0] < min_pet:
-                min_pet = dist[i][0]        
-                min_pet_row = i
-        final_path = find_shortest_path(maze, target, (min_pet_row, 0))
+        min_pet_col = 0
+        for i in range(len(maze[0])):
+            if dist[0][i] < min_pet:
+                min_pet = dist[0][i]        
+                min_pet_col = i
+        final_path = find_shortest_path(maze, target, (0, min_pet_col))
     else :
         min_can = INF
-        min_can_row = 0
+        min_can_col = 0
         for i in range(len(maze)):
-            if dist[i][len(maze[0])-1] < min_can:
-                min_can = dist[i][len(maze[0])-1]        
-                min_can_row = i
-        final_path = find_shortest_path(maze, target, (min_can_row, len(maze[0])-1))
+            if dist[len(maze)-1][i] < min_can:
+                min_can = dist[len(maze)-1][i]        
+                min_can_col = i
+        final_path = find_shortest_path(maze, target, (len(maze)-1, min_can_col))
         
     temp_path = find_shortest_path(maze, start, target)[1:]
     final_path += temp_path
@@ -160,6 +161,8 @@ def main(given_map, start_row, start_col):
         start = (start_row, start_col)
         print("START AT :", start)
         start, path = classify_trash(given_map, start)
+        end_row = start[0]
+        end_col = start[1]
 
         print("RESULT : ")
         print(start)
@@ -174,28 +177,28 @@ def main(given_map, start_row, start_col):
             dx = col_2 - col_1
             #N
             if dy < 0 and dx == 0:
-                new = [0, 15, 0, 0]
+                new = [1, 2, 0, 0]
             #NE
             elif dy < 0 and dx > 0:
-                new = [0, 15, 1, 15]
+                new = [1, 2, 2, 2]
             #E
             elif dy == 0 and dx > 0:
-                new = [0, 0, 1, 15]
+                new = [0, 0, 2, 2]
             #SE
             elif dy > 0 and dx > 0:
-                new = [1, 15, 1, 15]
+                new = [2, 2, 2, 2]
             #S
             elif dy > 0 and dx == 0:
-                new = [1, 15, 0, 0]
+                new = [2, 2, 0, 0]
             #SW
             elif dy > 0 and dx < 0:
-                new = [1, 15, 0, 15]
+                new = [2, 2, 1, 2]
             #W
             elif dy == 0 and dx < 0:
-                new = [0, 0, 0, 15]
+                new = [0, 0, 1, 2]
             #NW
             else :
-                new = [0, 15, 0, 15]
+                new = [1, 2, 1, 2]
 
             if (move_order):
                 old = move_order[-1]    
@@ -207,5 +210,8 @@ def main(given_map, start_row, start_col):
             else :
                 move_order.append(new)
             row_1, col_1 = row_2, col_2
+            
+        for i in range(len(move_order)):
+            move_order[i] = tuple(move_order[i])
 
-        return move_order
+        return move_order, end_row, end_col
