@@ -18,10 +18,6 @@ if not webCam.isOpened():
     print("Can't open camera")	
     exit()
     
-#Camera Setup
-#webCam.set(cv.CAP_PROP_FRAME_WIDTH, 1000) #width = 2560px
-#webCam.set(cv.CAP_PROP_FRAME_HEIGHT, 720) #height = 1440px
-
 start_row = 0
 start_col = 0
 
@@ -31,11 +27,11 @@ if not usable:
     print("Can't recieve img")
 else:
     resize_img = cv.resize(img, (1020,720), interpolation=cv.INTER_CUBIC)
-    cv.imshow("webCam", resize_img)
+    
     while True:
 	    #Save Image
+	    cv.imshow("webCam", resize_img)
 	    cv.imwrite("/home/sgme/Images/test1.jpg", resize_img)
-	    time.sleep(1)
 	    #Image Analysis
 	    yolo = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.3 --source /home/sgme/Images/test1.jpg"
 	    os.system(yolo)
@@ -63,12 +59,11 @@ else:
 		    
 		    #msg = "go"
 		    #py_serial.write(msg.encode())
-		    time.sleep(2)
 	    
 		    while len(move_order):
 			    py_serial.write(move_order.pop(0))
 			    print("pop")
-			    time.sleep(0.5) #delay time decided by velocity and distance
+			    time.sleep(2) #delay time decided by velocity and distance
 		
 		    return_msg = py_serial.readline().decode('utf-8')
 		    print(return_msg)
@@ -76,7 +71,7 @@ else:
 		    while(return_msg[0:4] != "done"):
 			    print(return_msg)
 			    time.sleep(1)
-		    time.sleep(4)
+		    time.sleep(5)
 		    start_row = end_row
 		    start_col = end_col
 	    
