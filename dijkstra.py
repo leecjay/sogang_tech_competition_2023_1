@@ -157,6 +157,9 @@ def classify_trash(given_map, start):
 
 #Main
 def main(given_map, start_row, start_col):
+        temp = [[('e', 0) for i in range(len(given_map[0]))]]
+        given_map = temp + given_map
+        given_map.append(temp)
         start = (start_row, start_col)
         print("START AT :", start)
         start, path = classify_trash(given_map, start)
