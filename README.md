@@ -11,8 +11,25 @@
 🌟 Team member 이도헌 (서강대학교 기계공학과 19)
 
 ## <div align="center">Summary</div>
+🚀 Customized yolov5 using Roboflow and Google Colab
+[Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
+yolov5m 모델을 이용하여 best.pt를 제작
 
+🚀 Take Image using WebCam - Python3 OpenCV (VideoCapture)
 
+🚀 Analysis the Image - customized yolov5 (detect.py and best.pt)
+
+Object 좌표값 데이터를 output.txt에 저장
+
+🚀 Make Object Map using 2D Matrix from output.txt Data - Python3 Code(file_read.py) 
+
+🚀 Find the Most Efficient Way - Python3 Code (dijkstra.py)
+
+🚀 Send the Control Order to Arduino Nano by Serial Module - Python3 pyserial
+
+🚀 Recieve the Control Order in the Arduino - Arduino Serial (*.ino)
+
+🚀 Integration Code - Python3 Code (recycle.py)
 
 
 ## <div align="center">Usecase Diagram</div>
