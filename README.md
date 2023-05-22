@@ -13,9 +13,9 @@
 ## <div align="center">Summary</div>
 🚀 Customized yolov5 using Roboflow and Google Colab
 
-[Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
+- [Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
 
-yolov5m 모델을 이용하여 best.pt를 제작
+- yolov5m 모델을 이용하여 best.pt를 제작
 
 🚀 Take Image using WebCam - Python3 OpenCV (VideoCapture)
 
@@ -23,7 +23,7 @@ yolov5m 모델을 이용하여 best.pt를 제작
 🚀 Analysis the Image - customized yolov5 (detect.py and best.pt)
 
 
-Object 좌표값 데이터를 output.txt에 저장
+- Object 좌표값 데이터를 output.txt에 저장
 
 
 🚀 Make Object Map using 2D Matrix from output.txt Data - Python3 Code(file_read.py) 
