@@ -157,7 +157,6 @@ def classify_trash(given_map, start):
 
 #Main
 def main(given_map, start_row, start_col):
-
         start = (start_row, start_col)
         print("START AT :", start)
         start, path = classify_trash(given_map, start)
@@ -168,7 +167,7 @@ def main(given_map, start_row, start_col):
         print(start)
         print(path)
 
-        move_order = []
+        move_order = [[0, 0, 0, 0, 0]]
 
         row_1, col_1 = path.pop()
         while(path):
@@ -177,32 +176,32 @@ def main(given_map, start_row, start_col):
             dx = col_2 - col_1
             #N
             if dy < 0 and dx == 0:
-                new = [1, 2, 0, 0]
+                new = [1, 2, 0, 0, 0]
             #NE
             elif dy < 0 and dx > 0:
-                new = [1, 2, 2, 2]
+                new = [1, 2, 2, 2, 1]
             #E
             elif dy == 0 and dx > 0:
-                new = [0, 0, 2, 2]
+                new = [0, 0, 2, 2, 2]
             #SE
             elif dy > 0 and dx > 0:
-                new = [2, 2, 2, 2]
+                new = [2, 2, 2, 2, 3]
             #S
             elif dy > 0 and dx == 0:
-                new = [2, 2, 0, 0]
+                new = [2, 2, 0, 0, 4]
             #SW
             elif dy > 0 and dx < 0:
-                new = [2, 2, 1, 2]
+                new = [2, 2, 1, 2, 5]
             #W
             elif dy == 0 and dx < 0:
-                new = [0, 0, 1, 2]
+                new = [0, 0, 1, 2, 6]
             #NW
             else :
-                new = [1, 2, 1, 2]
+                new = [1, 2, 1, 2, 7]
 
             if (move_order):
                 old = move_order[-1]    
-                if (old[0]==new[0] and old[2] == new[2]):
+                if (old[5] == new[5]):
                     move_order[-1][1] += new[1]
                     move_order[-1][3] += new[3]
                 else:
