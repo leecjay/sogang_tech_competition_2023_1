@@ -10,7 +10,7 @@ def object_boundary(maze, row_index, col_index):
     for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]:
             next_y, next_x = row_index + dy, col_index + dx
             # Case : Index out of range
-            if next_y < 0 or next_y >= n or next_x < 0 or next_x >= m:
+            if next_y < 0 or next_y >= m or next_x < 0 or next_x >= n:
                 continue
             else :
               maze[next_y][next_x] = -1
@@ -22,7 +22,7 @@ def object_boundary_deletion(maze, row_index, col_index):
     for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]:
             next_y, next_x = row_index + dy, col_index + dx
             # Case : Index out of range
-            if next_y < 0 or next_y >= n or next_x < 0 or next_x >= m:
+            if next_y < 0 or next_y >= m or next_x < 0 or next_x >= n:
                 continue
             else :
               maze[next_y][next_x] = 0
@@ -47,7 +47,7 @@ def dijkstra(maze, start):
             #Next position
             next_y, next_x = pos[0] + dy, pos[1] + dx
             # Case : Index out of range
-            if next_y < 0 or next_y >= n or next_x < 0 or next_x >= m:
+            if next_y < 0 or next_y >= m or next_x < 0 or next_x >= n:
                 continue
             # Case : Obstacle
             if maze[next_y][next_x] == -1:
@@ -79,7 +79,7 @@ def find_shortest_path(maze, start, target):
         for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]:
             next_y, next_x = y + dy, x + dx
             # Case : Index out of range
-            if next_y < 0 or next_y >= n or next_x < 0 or next_x >= m:
+            if next_y < 0 or next_y >= m or next_x < 0 or next_x >= n:
                 continue
             # Case : Current point > Precede point -> update
             if dist[next_y][next_x] < min_dist:
@@ -207,11 +207,14 @@ def main(given_map, start_row, start_col):
     start, path, target, pet_list, can_list = classify_trash(given_map, start)
     end_row = start[0]
     end_col = start[1]
-
+    target_number = given_map[target[0]][target[1]][1]
+    target_object = given_map[target[0]][target[1]][0]
+    
+    print(target_object, target_number)
     print("RESULT INDEX: ")
     print(path, "\n")
 
-    move_order = [[0, 0, 0]]
+    move_order = [[0,0,0]]
 
     row_1, col_1 = path.pop()
     while(path):
@@ -260,8 +263,9 @@ def main(given_map, start_row, start_col):
 
     for i in range(len(given_map)):
         for j in range(len(given_map[0])):
-            if given_map[i][j][1] == given_map[target[0]][target[1]][1]:
+            if (given_map[i][j] == (target_object, target_number) and (target_object, target_number) != ('e',0)) :
                 given_map[i][j] = ('e', 0)
+                print("delete ", i, j)
     print("RESULT MOVE ORDER : \n", move_order, "\n")
  
     return move_order, given_map, end_row, end_col, pet_list, can_list
