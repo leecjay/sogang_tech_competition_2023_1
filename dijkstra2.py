@@ -265,3 +265,18 @@ def main(given_map, start_row, start_col):
     print("RESULT MOVE ORDER : \n", move_order, "\n")
  
     return move_order, given_map, end_row, end_col, pet_list, can_list
+
+
+#Traceback (most recent call last):
+#  File "/home/sgme/yolov5/recycle.py", line 38, in <module>
+#    move_order, given_map, start_row, start_col, pet_list, can_list = dijkstra2.main(given_map, start_row, start_col)
+#  File "/home/sgme/yolov5/dijkstra2.py", line 207, in main
+#    start, path, target, pet_list, can_list = classify_trash(given_map, start)
+#  File "/home/sgme/yolov5/dijkstra2.py", line 169, in classify_trash
+#    final_map = find_shortest_classfy_path(maze, final_map, pet_list, can_list, start)
+#  File "/home/sgme/yolov5/dijkstra2.py", line 113, in find_shortest_classfy_path
+#    dist = dijkstra(temp_maze, (i, j))
+#  File "/home/sgme/yolov5/dijkstra2.py", line 53, in dijkstra
+#    if maze[next_y][next_x] == -1:
+#IndexError: index 28 is out of bounds for axis 0 with size 28
+
