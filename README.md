@@ -112,7 +112,8 @@ def map():
 
 🚀 Find the Most Efficient Way - Python3 Code (dijkstra.py)
 
-<p align="center">dijkstra.py</p>
+<details open>
+<summary>dijkstra.py</summary>
 
 ```bash
 import heapq
@@ -387,6 +388,9 @@ def main(given_map, start_row, start_col):
  
     return move_order, given_map, end_row, end_col, pet_list, can_list
 ```
+ 
+</detail>
+ 
 
 🚀 Send the Control Order to Arduino Nano by Serial Module - Python3 pyserial
 
