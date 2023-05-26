@@ -16,16 +16,18 @@
 - [Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
 
 - yolov5m 모델을 이용하여 best.pt를 제작
-<br>
+
+
 🚀 Take Image using WebCam - terminal (fswebcam)
 
 
 ```bash
-git clone https://github.com/ultralytics/yolov5  # clone
-cd yolov5
-pip install -r requirements.txt  # install
+import os
+picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
+os.system(picture)
 ```
-<br>
+
+
 🚀 Analysis the Image - customized yolov5 (detect.py and best.pt)
 
 - Final Image
@@ -34,19 +36,18 @@ pip install -r requirements.txt  # install
 
 - Object 좌표값 데이터를 output.txt에 저장
 
-<br>
 🚀 Make Object Map using 2D Matrix from output.txt Data - Python3 Code(file_read.py) 
 
-<br>
+
 🚀 Find the Most Efficient Way - Python3 Code (dijkstra.py)
 
-<br>
+
 🚀 Send the Control Order to Arduino Nano by Serial Module - Python3 pyserial
 
-<br>
+
 🚀 Recieve the Control Order in the Arduino - Arduino Serial (*.ino)
 
-<br>
+
 🚀 Integration Code - Python3 Code (recycle.py)
 
 
