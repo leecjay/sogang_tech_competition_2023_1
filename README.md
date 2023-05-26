@@ -409,7 +409,7 @@ while len(move_order):
 ```		
  
  
-🚀 Recieve the Control Order in the Arduino - Arduino Serial (*.ino)
+🚀 Recieve the Control Order in the Arduino - Arduino Serial (motor_control.ino)
 
 	
 <p align = "center">motor_control.ino</p>
@@ -603,16 +603,17 @@ while True :
 
 ## <div align="center">Usecase Diagram</div>
 
-
+<p align="center"><img width="800" src="https://file.notion.so/f/s/2704a64d-4d33-48a2-a687-454f3bd5ee9a/Untitled.png?id=96f4490a-b553-48ef-a6c6-4ee944f7edc6&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685194003207&signature=5iJw3sUBKKP9VAckm_JFTG8x-HvNL-QXluK9eqh96_0&downloadName=Untitled.png"></p>
 
 ## <div align="center">System Context Class Diagram</div>
-
-
+<p align="center"><img width="800" src="https://file.notion.so/f/s/35c52d4f-d670-4946-b0d5-49fbf5b7fdaa/Untitled.png?id=bceb25bf-fa38-4e2a-aab5-0f33a588f027&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685194075815&signature=NS_9rHqoeEOmjTnApyxKVflKAzH4mbIRpoTJvpgdzxM&downloadName=Untitled.png"></p>
 
 ## <div align="center">Object Structuring</div>
+<p align="center"><img width="800" src=""></p>
 
 ## <div align="center">Collaboration Diagram</div>
-
+<p align="center"><img width="800" src=""></p>
+	
 ## <div align="center">Documentation</div>
 
 ## <div align="center">Reference - yolov5</div>
