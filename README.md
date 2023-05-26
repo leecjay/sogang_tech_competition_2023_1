@@ -56,7 +56,8 @@ if len(det):
 <p align="center">Terminal</p>
 
 ```bash
-python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg
+# Modify file location
+python3 yolov5/detect.py > yolov5/output.txt --weights yolov5/best.pt --img 640 --conf 0.4 --source Images/test1.jpg
 ```
     
 🚀 Make Object Map using 2D Matrix from output.txt Data - Python3 Code(file_read.py) 
@@ -66,7 +67,7 @@ python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /ho
 ```bash
 #Make 2D Array using output.txt (object location data)
 def map():
-        f = open("/home/sgme/yolov5/output.txt", 'r')
+        f = open("/home/sgme/yolov5/output.txt", 'r') # Modify file location
         f.readline()
         object_list = []
         lines = f.read().splitlines()
@@ -110,6 +111,7 @@ def map():
 ```
 
 🚀 Find the Most Efficient Way - Python3 Code (dijkstra.py)
+
 
 
 🚀 Send the Control Order to Arduino Nano by Serial Module - Python3 pyserial
