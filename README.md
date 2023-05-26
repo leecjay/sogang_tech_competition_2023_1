@@ -21,7 +21,7 @@
 🚀 Take Image using WebCam - terminal (fswebcam)
 
 
-```bash
+```python
 import os
 picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
 os.system(picture)
@@ -39,7 +39,7 @@ os.system(picture)
 
 <p align="center">detect.py</p>
 
-```bash
+```python
 if len(det):
     # Rescale boxes from img_size to im0 size
     det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
@@ -64,7 +64,7 @@ python3 yolov5/detect.py > yolov5/output.txt --weights yolov5/best.pt --img 640 
 
 <p align="center">file_read.py</p>
 
-```bash
+```python
 #Make 2D Array using output.txt (object location data)
 def map():
         f = open("/home/sgme/yolov5/output.txt", 'r') # Modify file location
@@ -115,7 +115,7 @@ def map():
 <details open>
 <summary>dijkstra.py</summary>
 
-```bash
+```python
 import heapq
 import numpy as np
 global INF
@@ -393,75 +393,176 @@ def main(given_map, start_row, start_col):
  
 
 🚀 Send the Control Order to Arduino Nano by Serial Module - Python3 pyserial
-
- <p align = "center"> recycle.py </p>
  
-```bash
-import os
-import time
+```python
 import serial
-import cv2 as cv
-import file_read
-import dijkstra
-
-#down = "python3 downimg.py"
-#os.system(down)
-#time.sleep(1)
 
 #Serial Setup
-py_serial = serial.Serial(port = '/dev/ttyUSB8', baudrate = 9600)
+py_serial = serial.Serial(port = '/dev/ttyUSB0', baudrate = 9600)
 
-
-#Camera Setup
-#webCam.set(cv.CAP_PROP_FRAME_WIDTH, 1000) #width = 2560px 
-#webCam.set(cv.CAP_PROP_FRAME_HEIGHT, 720) #height = 1440px
-picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
-os.system(picture)
-img = cv.imread("Images/test1.jpg", cv.IMREAD_COLOR)
-resize_img = cv.resize(img, (1020,720), interpolation=cv.INTER_AREA)
-cv.imwrite("Images/test1.jpg", resize_img)
-
-#Image Analysis
-yolo = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg"
-os.system(yolo)
-time.sleep(1)
-
-#object list
-lines = open('/home/sgme/yolov5/output.txt').readlines()
-given_map=file_read.map()
-start_row = 0
-start_col = 0
-
-while True :
-	#Make move order from start position
-	move_order, given_map, start_row, start_col, pet_list, can_list = dijkstra.main(given_map, start_row, start_col)
-	#msg = "go"
-	#py_serial.write(msg.encode())
-	#time.sleep(2)
-	if (len(pet_list) == 0 and len(can_list) == 0):
-		print("FINISH\n")
-		break
+#Get move_order from dijkstra	
 	
-	while len(move_order):
-		py_serial.write(move_order.pop(0))
-		print("pop")
-		time.sleep(1.0) #delay time decided by velocity and distance
-		#return_msg = py_serial.readline().decode('utf-8')
-		#print(return_msg)
-		#while(return_msg[0:4] != "done"):
-			#return_msg = py_serial.readline().decode('utf-8')
-			#print(return_msg)
-			#time.sleep(0.5)
-	
-	#time.sleep(1)
+while len(move_order):
+	py_serial.write(move_order.pop(0))
+	print("pop")
+	time.sleep(1.0) #delay time decided by velocity and distance
 ```		
  
  
 🚀 Recieve the Control Order in the Arduino - Arduino Serial (*.ino)
 
+```cpp
+// pin
+#define X_dirPin 2
+#define X_stepPin 3
+#define Y_dirPin 4
+#define Y_stepPin 5
+#define Z_dirPin 6
+#define Z_stepPin 7
 
+
+// const
+float sPR = 3200;
+int Head_dir = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(X_dirPin,OUTPUT);
+  pinMode(Y_dirPin,OUTPUT);
+  pinMode(X_stepPin,OUTPUT);
+  pinMode(Y_stepPin,OUTPUT);
+  pinMode(Z_dirPin,OUTPUT);
+  pinMode(Z_stepPin,OUTPUT);
+}
+
+void move(int x_distance, int y_distance, int Head){
+
+  float dx, dy;
+  dx = (float)x_distance/80; //원래 100
+  dy = (float)y_distance/80;
+
+  int Head_new = Head;
+  
+  int angle = Head_new - Head_dir;
+    
+
+  if(angle !=0){
+    if(abs(angle)<4){
+      if(angle>0){
+          digitalWrite(Z_dirPin, HIGH);
+      }
+      else{
+          digitalWrite(Z_dirPin, LOW);
+      }
+      Head_dir = Head_new;
+      for(int i=0; i<sPR*abs(angle)/8; i++){
+        digitalWrite(Z_stepPin,HIGH);
+        delayMicroseconds(200);
+        digitalWrite(Z_stepPin,LOW);
+        delayMicroseconds(200);
+      }
+    }
+    else{
+      if(angle>0){
+        digitalWrite(Z_dirPin,LOW); 
+      }
+      else{
+        digitalWrite(Z_dirPin,HIGH);
+      }
+        
+      Head_dir = Head_new;
+
+      for(int i=0; i<sPR*(8-abs(angle))/8; i++){
+        digitalWrite(Z_stepPin,HIGH);
+        delayMicroseconds(200);
+        digitalWrite(Z_stepPin,LOW);
+        delayMicroseconds(200);
+      }    
+    }
+  }
+   
+
+    
+    switch(Head_new){
+      case 0:
+        digitalWrite(X_dirPin, HIGH);
+        digitalWrite(Y_dirPin, LOW);
+        break;
+      case 1:
+        digitalWrite(X_dirPin, HIGH);
+        digitalWrite(Y_dirPin, LOW);
+        break;
+      case 2:
+        digitalWrite(X_dirPin, HIGH);
+        digitalWrite(Y_dirPin, LOW);
+        break;
+      case 3:
+        digitalWrite(X_dirPin, HIGH);
+        digitalWrite(Y_dirPin, HIGH);
+        break;
+      case 4:
+        digitalWrite(X_dirPin, LOW);
+        digitalWrite(Y_dirPin, HIGH);
+        break;
+      case 5:
+        digitalWrite(X_dirPin, LOW);
+        digitalWrite(Y_dirPin, HIGH);
+        break;
+      case 6:
+        digitalWrite(X_dirPin, LOW);
+        digitalWrite(Y_dirPin, HIGH);
+        break;
+      case 7:
+        digitalWrite(X_dirPin, LOW);
+        digitalWrite(Y_dirPin, LOW);
+        break;
+        
+    }
+  
+    // X,Y 거리, 속도
+    for(int i=0, j=0; (i<100000*dx)||(j<100000*dy);i++,j++){
+      if(i<100000*dx){
+        digitalWrite(X_stepPin,HIGH);
+        delayMicroseconds(30);
+        digitalWrite(X_stepPin,LOW);
+        delayMicroseconds(30);
+      }
+      if((j<100000*dy)){
+        digitalWrite(Y_stepPin,HIGH);
+        delayMicroseconds(30);
+        digitalWrite(Y_stepPin,LOW);
+        delayMicroseconds(30);
+      }
+    }
+}
+
+
+
+void loop() {
+  int data[3];
+  if(Serial.available() >= 3){
+    for (int i = 0; i < 3; i++){
+      data[i] = Serial.read();
+    }
+    int x_d = data[1];
+    int y_d = data[0];
+    int z_dir = data[2];
+    move(x_d, y_d, z_dir);
+  }
+  Serial.println("done");
+}
+```
+	
 🚀 Integration Code - Python3 Code (recycle.py)
 
+<p align = "center"> recycle.py </p>
+
+```python
+
+	
+```
+			  
+			  
 
 ## <div align="center">Usecase Diagram</div>
 
