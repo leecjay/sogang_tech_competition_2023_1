@@ -34,7 +34,17 @@ os.system(picture)
 
 <img width="800" src="https://file.notion.so/f/s/f78846c6-a9a6-427b-a0f3-4428d04d011c/Untitled.jpeg?id=2e4f2ae3-20c1-45e3-b12a-bc9c71667c68&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685187034925&signature=IfXaNab3w6zn-yrGZZgv5DQYqLhXkGZpFzqQxoTMwFQ&downloadName=Untitled.jpeg">
 
-- Object 좌표값 데이터를 output.txt에 저장
+- Object 좌표값 데이터를 output.txt에 저장 (in detect.py)
+
+
+```bash
+
+```
+
+
+```bash
+
+```
 
 🚀 Make Object Map using 2D Matrix from output.txt Data - Python3 Code(file_read.py) 
 
