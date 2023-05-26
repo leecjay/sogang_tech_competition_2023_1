@@ -411,6 +411,8 @@ while len(move_order):
  
 🚀 Recieve the Control Order in the Arduino - Arduino Serial (*.ino)
 
+	
+<p align = "center">motor_control.ino</p>
 ```cpp
 // pin
 #define X_dirPin 2
