@@ -413,6 +413,7 @@ while len(move_order):
 
 	
 <p align = "center">motor_control.ino</p>
+
 ```cpp
 // pin
 #define X_dirPin 2
@@ -482,9 +483,7 @@ void move(int x_distance, int y_distance, int Head){
       }    
     }
   }
-   
-
-    
+       
     switch(Head_new){
       case 0:
         digitalWrite(X_dirPin, HIGH);
@@ -538,8 +537,6 @@ void move(int x_distance, int y_distance, int Head){
     }
 }
 
-
-
 void loop() {
   int data[3];
   if(Serial.available() >= 3){
@@ -560,7 +557,45 @@ void loop() {
 <p align = "center"> recycle.py </p>
 
 ```python
+import os
+import time
+import serial
+import cv2 as cv
+import file_read
+import dijkstra
 
+#Serial Setup
+py_serial = serial.Serial(port = '/dev/ttyUSB8', baudrate = 9600)
+
+#Camera Setup
+picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
+os.system(picture)
+img = cv.imread("Images/test1.jpg", cv.IMREAD_COLOR)
+resize_img = cv.resize(img, (1020,720), interpolation=cv.INTER_AREA)
+cv.imwrite("Images/test1.jpg", resize_img)
+
+#Image Analysis
+yolo = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg"
+os.system(yolo)
+time.sleep(1)
+
+#object list
+lines = open('/home/sgme/yolov5/output.txt').readlines()
+given_map=file_read.map()
+start_row = 0
+start_col = 0
+
+while True :
+	#Make move order from start position
+	move_order, given_map, start_row, start_col, pet_list, can_list = dijkstra.main(given_map, start_row, start_col)
+	if (len(pet_list) == 0 and len(can_list) == 0):
+		print("FINISH\n")
+		break
+	
+	while len(move_order):
+		py_serial.write(move_order.pop(0))
+		print("pop")
+		time.sleep(1.0) #delay time decided by velocity and distance		
 	
 ```
 			  
