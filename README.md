@@ -565,7 +565,7 @@ import file_read
 import dijkstra
 
 #Serial Setup
-py_serial = serial.Serial(port = '/dev/ttyUSB8', baudrate = 9600)
+py_serial = serial.Serial(port = '/dev/ttyUSB0', baudrate = 9600)
 
 #Camera Setup
 picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
@@ -575,7 +575,7 @@ resize_img = cv.resize(img, (1020,720), interpolation=cv.INTER_AREA)
 cv.imwrite("Images/test1.jpg", resize_img)
 
 #Image Analysis
-yolo = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg"
+yolo = "python3 yolov5/detect.py > yolov5/output.txt --weights yolov5/best.pt --img 640 --conf 0.4 --source Images/test1.jpg"
 os.system(yolo)
 time.sleep(1)
 
