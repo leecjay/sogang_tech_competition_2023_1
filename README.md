@@ -39,21 +39,21 @@ os.system(picture)
 
 ```bash
 if len(det):
-                # Rescale boxes from img_size to im0 size
-                det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
+    # Rescale boxes from img_size to im0 size
+    det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
                 
-                #Customized part : Save det(coordinate info) to output.txt
-                for i in range(len(det)):
-                    print(float(det[i][0]))
-                    print(float(det[i][1]))
-                    print(float(det[i][2]))
-                    print(float(det[i][3]))
-                    print(float(det[i][5]))
+    #Customized part : Save det(coordinate info) to output.txt
+    for i in range(len(det)):
+        print(float(det[i][0]))
+        print(float(det[i][1]))
+        print(float(det[i][2]))
+        print(float(det[i][3]))
+        print(float(det[i][5]))
 ```
 
 
 ```bash
-
+python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg
 ```
 
 🚀 Make Object Map using 2D Matrix from output.txt Data - Python3 Code(file_read.py) 
