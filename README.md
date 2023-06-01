@@ -614,8 +614,6 @@ while True :
 
 ## <div align="center">Collaboration Diagram</div>
 <p align="center"><img width="800" src="https://file.notion.so/f/s/9c251788-c391-4b8d-aa2e-e5e728f70f97/Untitled.png?id=e1663a8e-3491-4b99-802b-5b2ba7a062b9&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685676653278&signature=65beLP2UqQAmnytNz6jEt_HEjhf-McZGBZDr6OYiAEo&downloadName=Untitled.png"></p>
-	
-## <div align="center">Documentation</div>
 
 ## <div align="center">Reference - yolov5</div>
 
