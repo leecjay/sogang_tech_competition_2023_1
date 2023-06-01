@@ -610,7 +610,7 @@ while True :
 <p align="center"><img width="800" src="https://file.notion.so/f/s/35c52d4f-d670-4946-b0d5-49fbf5b7fdaa/Untitled.png?id=bceb25bf-fa38-4e2a-aab5-0f33a588f027&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685672013811&signature=sJ5LP7usi7YRbPxejpXikC0ZmEAwj4fFUJFN3BmCYxI&downloadName=Untitled.png"></p>
 
 ## <div align="center">Object Structuring</div>
-<p align="center"><img width="800" src=""></p>
+<p align="center"><img width="800" src="https://file.notion.so/f/s/51723bc7-4e46-4244-a82d-747ba22451a7/Untitled.png?id=f3a2aa5f-7b90-4f01-90b8-baf440e706db&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685674268847&signature=x0GWdU_fD-9ZB62nvGxXuwVGxdMAzkRWCeCv5x-HRO4&downloadName=Untitled.png"></p>
 
 ## <div align="center">Collaboration Diagram</div>
 <p align="center"><img width="800" src=""></p>
