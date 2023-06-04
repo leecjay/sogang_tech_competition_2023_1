@@ -31,7 +31,6 @@ time.sleep(1)
 lines = open('/home/sgme/yolov5/output1.txt').readlines()
 given_map_head = file_read_head.map()
 move_order_head = dijkstra_head.main(given_map_head)
-
 py_serial.write(move_order.pop(0));
 time.sleep(1.0)
 
