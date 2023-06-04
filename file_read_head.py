@@ -33,9 +33,6 @@ def map():
             y_m = m*(720/(rows-4)) + (720/(2*(rows-4)))
             for n in range(0, cols):
                 x_m = n*(1020/cols) + (1020/(2*cols))
-                for k in range(len(object_list)):
-                    if (x_m > object_list[k][0]) and (x_m < object_list[k][2]) and (y_m > object_list[k][1]) and (y_m < object_list[k][3]):
-                        if object_list[k][4] == 0:
-                            result_map[m+2][n] = ('h',k+1)
-                            break
+                if (x_m > object_list[0][0]) and (x_m < object_list[0][2]) and (y_m > object_list[0][1]) and (y_m < object_list[0][3]):
+                        result_map[m+2][n] = ('h', 1)
         return result_map
