@@ -5,10 +5,7 @@ import cv2 as cv
 import file_read
 import file_read_head
 import dijkstra
-
-#down = "python3 downimg.py"
-#os.system(down)
-#time.sleep(1)
+import dijkstra_head
 
 #Serial Setup
 py_serial = serial.Serial(port = '/dev/ttyUSB8', baudrate = 9600)
@@ -33,8 +30,9 @@ time.sleep(1)
 #Head position
 lines = open('/home/sgme/yolov5/output1.txt').readlines()
 given_map_head = file_read_head.map()
+move_order_head = dijkstra_head.main(given_map_head)
 
-py_serial.write([]);
+py_serial.write(move_order.pop(0));
 time.sleep(1.0)
 
 #object list
