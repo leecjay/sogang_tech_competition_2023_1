@@ -12,10 +12,7 @@ import dijkstra
 #Serial Setup
 py_serial = serial.Serial(port = '/dev/ttyUSB8', baudrate = 9600)
 
-
 #Camera Setup
-#webCam.set(cv.CAP_PROP_FRAME_WIDTH, 1000) #width = 2560px 
-#webCam.set(cv.CAP_PROP_FRAME_HEIGHT, 720) #height = 1440px
 picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
 os.system(picture)
 img = cv.imread("Images/test1.jpg", cv.IMREAD_COLOR)
@@ -35,6 +32,11 @@ time.sleep(1)
 #Head position
 lines = open('/home/sgme/yolov5/output1.txt').readlines()
 given_map_head = file_read.map()
+
+
+
+py_serial.write([]);
+time.sleep(1.0)
 
 #object list
 lines = open('/home/sgme/yolov5/output.txt').readlines()
