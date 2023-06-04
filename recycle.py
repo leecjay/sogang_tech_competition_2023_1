@@ -3,6 +3,7 @@ import time
 import serial
 import cv2 as cv
 import file_read
+import file_read_head
 import dijkstra
 
 #down = "python3 downimg.py"
@@ -31,9 +32,7 @@ time.sleep(1)
 
 #Head position
 lines = open('/home/sgme/yolov5/output1.txt').readlines()
-given_map_head = file_read.map()
-
-
+given_map_head = file_read_head.map()
 
 py_serial.write([]);
 time.sleep(1.0)
