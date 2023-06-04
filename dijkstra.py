@@ -7,7 +7,7 @@ def object_boundary(maze, row_index, col_index):
     m = len(maze) #Row of maze
     n = len(maze[0]) #Column of maze
     #valid index
-    for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]:
+    for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-2, 0), (-2, 1), (-2, 2), (-1, 2), (0, 2), (1, 2), (2, 2), (2, 1), (2, 0), (2, -1), (2, -2), (1, -2), (0, -2), (-1, -2), (-2, -2), (-2, -1)]:
             next_y, next_x = row_index + dy, col_index + dx
             # Case : Index out of range
             if next_y < 0 or next_y >= m or next_x < 0 or next_x >= n:
@@ -19,7 +19,7 @@ def object_boundary_deletion(maze, row_index, col_index):
     m = len(maze) #Row of maze
     n = len(maze[0]) #Column of maze
     #valid index
-    for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]:
+    for dy, dx in [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-2, 0), (-2, 1), (-2, 2), (-1, 2), (0, 2), (1, 2), (2, 2), (2, 1), (2, 0), (2, -1), (2, -2), (1, -2), (0, -2), (-1, -2), (-2, -2), (-2, -1)]:
             next_y, next_x = row_index + dy, col_index + dx
             # Case : Index out of range
             if next_y < 0 or next_y >= m or next_x < 0 or next_x >= n:
