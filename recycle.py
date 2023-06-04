@@ -22,10 +22,19 @@ img = cv.imread("Images/test1.jpg", cv.IMREAD_COLOR)
 resize_img = cv.resize(img, (1020,720), interpolation=cv.INTER_AREA)
 cv.imwrite("Images/test1.jpg", resize_img)
 
-#Image Analysis
-yolo = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg"
-os.system(yolo)
+#Image Analysis (PET & CAN)
+yolo1 = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output.txt --weights /home/sgme/yolov5/best.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg"
+os.system(yolo1)
 time.sleep(1)
+
+#Image Analysis (Head)
+yolo2 = "python3 /home/sgme/yolov5/detect.py > /home/sgme/yolov5/output1.txt --weights /home/sgme/yolov5/best1.pt --img 640 --conf 0.4 --source /home/sgme/Images/test1.jpg"
+os.system(yolo2)
+time.sleep(1)
+
+#Head position
+lines = open('/home/sgme/yolov5/output1.txt').readlines()
+given_map_head = file_read.map()
 
 #object list
 lines = open('/home/sgme/yolov5/output.txt').readlines()
