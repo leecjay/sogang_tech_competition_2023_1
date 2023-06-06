@@ -10,7 +10,19 @@
 
 🌟 Team member 이도헌 (서강대학교 기계공학과 19)
 
+## <div align="center">Video</div>
+
+🚀 See our operation video on the YouTube
+
+[Youtube_link](https://www.youtube.com/watch?v=g2JM7PrRbJY)
+
+
+<p align="center"><img width="800" src="https://file.notion.so/f/s/c6d9e6c2-dd1a-48c2-af97-89568916e9b6/Untitled.png?id=2e4aec94-d20c-420f-b64e-92179c369b49&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1686106710602&signature=f1lRWWR7JD6OZP5Xpnw_G3hLsTjJaLum_v06Opk_0S0&downloadName=Untitled.png"></p>
+
+
 ## <div align="center">Summary</div>
+
+
 🚀 Customized yolov5 using Roboflow and Google Colab
 
 - [Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
@@ -27,12 +39,18 @@ picture = "fswebcam --no-banner --set brightness=60% Images/test1.jpg"
 os.system(picture)
 ```
 
+- First Image
+
+<p align="center"><img width="800" src="https://file.notion.so/f/s/0f7580ce-3b6c-47f7-9cd3-3d457e8ed00f/test1.jpg?id=5e43ff6b-9970-4ced-9b5b-d9e23735aa74&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1686105840871&signature=cGS2X_t1DwVY7LATTMPBj1ZF0YSrzmvNwR5V1I-hX-E&downloadName=test1.jpg"></p>
+
 
 🚀 Analysis the Image - customized yolov5 (detect.py and best.pt)
 
+
+
 - Final Image
 
-<p align="center"><img width="800" src="https://file.notion.so/f/s/f78846c6-a9a6-427b-a0f3-4428d04d011c/Untitled.jpeg?id=2e4f2ae3-20c1-45e3-b12a-bc9c71667c68&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1685187034925&signature=IfXaNab3w6zn-yrGZZgv5DQYqLhXkGZpFzqQxoTMwFQ&downloadName=Untitled.jpeg"></p>
+<p align="center"><img width="800" src="https://file.notion.so/f/s/2e627ccb-23bc-4ef4-89f9-811433130be3/test1_analysis.jpg?id=56d6ca8a-a8bb-4e76-9503-9793160dfbec&table=block&spaceId=89f4f652-5ebd-4c52-8a2d-be12a0e49dda&expirationTimestamp=1686106088591&signature=sBmufxS9fGotkd2sYSj6OZd09dmvVfRugklHgAgP7cM&downloadName=test1_analysis.jpg"></p>
  
 
 - Object 좌표값 데이터를 output.txt에 저장
