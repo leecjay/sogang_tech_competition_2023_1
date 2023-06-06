@@ -15,7 +15,7 @@
 
 - [Our Roboflow Data Set](https://app.roboflow.com/sgme/classify-pet-and-can/4)
 
-- yolov5m 모델을 이용하여 best.pt를 제작
+- yolov5m 모델을 이용하여 [best.pt](https://drive.google.com/file/d/1xFNFxLWNwAg3CrGFe8cWR2mcu1oUs7Ly/view?usp=sharing)를 제작
 
 
 🚀 Take Image using WebCam - terminal (fswebcam)
