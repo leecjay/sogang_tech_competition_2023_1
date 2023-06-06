@@ -60,26 +60,26 @@ def find_shortest_path(maze, start, target):
                 min_dist = dist[next_y][next_x]
                 next_pos = (next_y, next_x)
         path.append(next_pos)
-    object_boundary(maze, start[0], start[1])
-    object_boundary(maze, target[0], target[1])
     return path
 
 #Function : Make head position index list from given map
 def find_head_index(given_map):
     row_total = 0
     col_total = 0
+    count = 0
     for i in range(len(given_map)):
         for j in range(len(given_map[0])):
             if given_map[i][j][0] == 'h':
                 row_total += i
                 col_total += j
-    start_row = round(row_total)
-    start_col = round(col_total)
+                count+=1
+    start_row = round(row_total/count)
+    start_col = round(col_total/count)
     return start_row, start_col
 
 #Main
-def main(given_map):
-    start_row, start_col = find_head_index(given_map)
+def main(given_map, start_row, start_col):
+    #start_row, start_col = find_head_index(given_map)
     
     start = (start_row, start_col)
     print("START AT :", start, "\n")
@@ -126,7 +126,7 @@ def main(given_map):
 
         if (move_order):
             old = move_order[-1]    
-            if (old[2] == new[2]) and (old[0] + new[0] < 16) and (old[1] + new[1] < 16):
+            if (old[2] == new[2]) and (old[0] + new[0] < 12) and (old[1] + new[1] < 12):
                 move_order[-1][0] += new[0]
                 move_order[-1][1] += new[1]
             else:
@@ -134,7 +134,8 @@ def main(given_map):
         else :
             move_order.append(new)
         row_1, col_1 = row_2, col_2
-            
+    
+    move_order.append([0,0,0])        
               
     for i in range(len(move_order)):
         move_order[i] = tuple(move_order[i])
